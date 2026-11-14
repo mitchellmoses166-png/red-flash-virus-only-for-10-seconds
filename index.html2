@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Red Phone Prank</title>
+
+<style>
+body {
+    margin: 0;
+    background: black;
+    color: white;
+    font-family: Arial;
+    text-align: center;
+}
+
+#screen {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: darkred;
+    padding: 30px 10px;
+    box-sizing: border-box;
+    animation: flash 1s infinite;
+}
+
+@keyframes flash {
+    50% { background: #ff0000; }
+}
+
+h1 {
+    font-size: 35px;
+}
+
+#count {
+    font-size: 100px;
+    font-weight: bold;
+}
+
+button {
+    padding: 16px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 15px;
+}
+
+.start {
+    background: red;
+    color: white;
+}
+
+.exit {
+    background: lime;
+    color: black;
+}
+
+#finish {
+    display: none;
+    color: lime;
+    font-size: 35px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🔴 RED SYSTEM PRANK</h1>
+
+<p>Press the button to start the 10-second simulation.</p>
+
+<button class="start" onclick="startPrank()">
+START PRANK
+</button>
+
+<div id="screen">
+
+<h1>⚠️ SYSTEM WARNING ⚠️</h1>
+
+<h2>PHONE SYSTEM FREEZE SIMULATION</h2>
+
+<p>Your screen is temporarily in prank mode.</p>
+
+<div id="count">10</div>
+
+<p id="message">Simulation running...</p>
+
+<button class="exit" onclick="stopPrank()">
+EXIT PRANK
+</button>
+
+<div id="finish">
+😂 JUST A PRANK!
+</div>
+
+</div>
+
+<script>
+
+let seconds = 10;
+let timer;
+
+function startPrank() {
+
+    seconds = 10;
+
+    document.getElementById("screen").style.display = "block";
+    document.getElementById("finish").style.display = "none";
+    document.getElementById("count").style.display = "block";
+
+    document.getElementById("count").innerText = seconds;
+
+    document.getElementById("message").innerText =
+    "Prank simulation running...";
+
+    clearInterval(timer);
+
+    timer = setInterval(function() {
+
+        seconds--;
+
+        document.getElementById("count").innerText = seconds;
+
+        if(seconds <= 0) {
+
+            clearInterval(timer);
+
+            document.getElementById("count").style.display = "none";
+
+            document.getElementById("message").innerText =
+            "Everything is perfectly safe!";
+
+            document.getElementById("finish").style.display = "block";
+        }
+
+    }, 1000);
+
+}
+
+function stopPrank() {
+
+    clearInterval(timer);
+
+    document.getElementById("screen").style.display = "none";
+
+}
+
+</script>
+
+</body>
+</html>
